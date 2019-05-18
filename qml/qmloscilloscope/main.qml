@@ -32,8 +32,8 @@ import QtQuick 2.0
 //![1]
 Item {
     id: main
-    width: 600
-    height: 400
+    width: 800
+    height: 480
 
     ControlPanel {
         id: controlPanel
