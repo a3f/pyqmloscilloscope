@@ -29,6 +29,7 @@ $QT_END_LICENSE$
 """
 
 import sys
+from os import path
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QGuiApplication, QColor
 from PyQt5.QtQml import QQmlContext, QQmlEngine
@@ -36,7 +37,6 @@ from PyQt5.QtQuick import QQuickView
 from PyQt5.QtCore import QDir, QUrl
 
 import datasource
-import qrc_resources
 
 def main():
     global app
@@ -64,7 +64,8 @@ def main():
     dataSource = datasource.DataSource(viewer)
     viewer.rootContext().setContextProperty("dataSource", dataSource)
 
-    viewer.setSource(QUrl("qrc:/qml/qmloscilloscope/main.qml"))
+    main_qml = path.dirname(__file__) + "/qml/qmloscilloscope/main.qml"
+    viewer.setSource(QUrl(main_qml))
     viewer.setResizeMode(QQuickView.SizeRootObjectToView)
     viewer.setColor(QColor("#404040"))
     viewer.show()
