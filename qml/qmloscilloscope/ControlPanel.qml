@@ -27,7 +27,7 @@
 **
 ****************************************************************************/
 
-import QtQuick 2.1
+import QtQuick 2.9
 import QtQuick.Layouts 1.0
 
 ColumnLayout {
@@ -42,6 +42,11 @@ ColumnLayout {
     signal antialiasingEnabled(bool enabled)
     signal openGlChanged(bool enabled)
 
+    Shortcut {
+        sequence: "Esc"
+        onActivated: Qt.quit()
+    }
+
     Text {
         text: "Scope"
         font.pointSize: 18
@@ -54,13 +59,24 @@ ColumnLayout {
         items: ["false", "true"]
         currentSelection: 1
         onSelectionChanged: openGlChanged(currentSelection == 1);
+
+        Shortcut {
+            sequence: "F1"
+            onActivated: openGLButton.click()
+        }
     }
 
     MultiButton {
+        id: graphButton
         text: "Graph: "
         items: ["line", "scatter"]
         currentSelection: 0
         onSelectionChanged: seriesTypeChanged(items[currentSelection]);
+
+        Shortcut {
+            sequence: "F2"
+            onActivated: graphButton.click()
+        }
     }
 
     MultiButton {
@@ -72,6 +88,11 @@ ColumnLayout {
                                 selection,
                                 5,
                                 sampleCountButton.items[sampleCountButton.currentSelection]);
+
+        Shortcut {
+            sequence: "F3"
+            onActivated: signalSourceButton.click()
+        }
     }
 
     MultiButton {
@@ -83,13 +104,24 @@ ColumnLayout {
                                 signalSourceButton.items[signalSourceButton.currentSelection],
                                 5,
                                 selection);
+
+        Shortcut {
+            sequence: "F4"
+            onActivated: sampleCountButton.click()
+        }
     }
 
     MultiButton {
+        id: refreshRateButton
         text: "Refresh rate: "
         items: ["1", "24", "60"]
         currentSelection: 2
         onSelectionChanged: refreshRateChanged(items[currentSelection]);
+
+        Shortcut {
+            sequence: "F5"
+            onActivated: refreshRateButton.click()
+        }
     }
 
     MultiButton {
@@ -99,5 +131,10 @@ ColumnLayout {
         enabled: true
         currentSelection: 0
         onSelectionChanged: antialiasingEnabled(currentSelection == 1);
+
+        Shortcut {
+            sequence: "F6"
+            onActivated: antialiasButton.click()
+        }
     }
 }

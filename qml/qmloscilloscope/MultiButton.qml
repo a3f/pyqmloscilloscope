@@ -66,4 +66,8 @@ Item {
             selectionChanged(button.items[currentSelection]);
         }
     }
+
+    function click() {
+        buttonText.clicked()
+    }
 }
